@@ -229,7 +229,7 @@ const getSprintById = async (req, res) => {
       LEFT JOIN projects p ON s.project_id = p.project_id
       LEFT JOIN test_files tf ON s.sprint_id = tf.sprint_id
       WHERE s.sprint_id = ?
-      GROUP BY s.sprint_id
+      GROUP BY s.sprint_id, p.name
     `,
       [req.params.id]
     );
