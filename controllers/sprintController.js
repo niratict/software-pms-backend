@@ -206,7 +206,7 @@ const getAllSprints = async (req, res) => {
     }
 
     query +=
-      " GROUP BY s.sprint_id ORDER BY CAST(SUBSTRING(s.name, 7) AS UNSIGNED)";
+      " GROUP BY s.sprint_id, p.name ORDER BY CAST(SUBSTRING(s.name, 7) AS UNSIGNED)";
 
     const [sprints] = await db.query(query, queryParams);
     res.json(sprints);
