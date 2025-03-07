@@ -1,17 +1,20 @@
+require('dotenv').config();
 const mysql = require("mysql2");
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
-  user: process.env.DB_USERNAME,  // เปลี่ยนจาก DB_USER เป็น DB_USERNAME
+  user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,  // เปลี่ยนจาก DB_NAME เป็น DB_DATABASE
+  database: process.env.DB_DATABASE,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
   ssl: {
-    rejectUnauthorized: true,
-  },
+    // ปรับการตั้งค่า SSL ให้เหมาะกับ TiDB Cloud
+    minVersion: 'TLSv1.2',
+    rejectUnauthorized: true
+  }
 });
 
 // Test database connection

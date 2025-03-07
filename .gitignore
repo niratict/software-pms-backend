@@ -44,3 +44,11 @@ coverage/
 # Temp files
 tmp/
 temp/
+
+# folder uploads test-files
+uploads/test-files
+
+# File Photo
+*.webp
+*.png
+*.jpg
