@@ -6,12 +6,15 @@ const morgan = require("morgan");
 // Load environment variables from .env file
 dotenv.config();
 
+// เรียกใช้ db ทันทีหลังจาก dotenv.config() เพื่อให้แน่ใจว่าตัวแปรสภาพแวดล้อมถูกโหลดก่อน
+const db = require("./db");
+
 const app = express();
 
 // Global Middleware
-app.use(cors()); // Enable CORS for all routes
-app.use(express.json()); // Parse JSON bodies
-app.use(morgan("dev")); // HTTP request logger
+app.use(cors());
+app.use(express.json());
+app.use(morgan("dev"));
 app.use("/api/uploads", express.static("uploads"));
 
 // Import Routes
@@ -83,9 +86,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-const db = require("./db");
-
-// Use async/await to test database connection
+// ย้ายโค้ดการทดสอบฐานข้อมูลมาอยู่ที่นี่
 (async () => {
   try {
     const [rows] = await db.query("SELECT 1");
