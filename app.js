@@ -83,7 +83,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-const db = require("./config/db");
+const db = require("./db");
 
 // Use async/await to test database connection
 (async () => {
